@@ -1,12 +1,29 @@
-%h2= "Groups"
-#groups
-  - @groups.each do |group|
-    .group= link_to group.name, group_path(group)
+%h2
+  = t('.title')
 
-%h2= "Your group"
-- if current_user.group.nil?
-  = link_to "Create group", "#"
-- else
-  = link_to current_user.group.name, group_path(current_user.group)
-  %p= current_user.group.description
+#group
+  - if @group.nil?
+    %p= t('.no_group_create', :link => link_to(t('create_group'), new_group_path))
+  - else
+    %p= t('.your_group')
+    .group.owned
+      = list_groups([@group])
+
+#groups
+  - if @groups.any?
+    %p= t('.groups_in')
+    = list_groups(@groups)
+  - else
+    .account
+      %p= t('.no_groups')
+
+- if false#@invitations.any?
+  .invitations
+    = list_pending_invites(@invitations)
+
+
+= content_for :column do
+  %h2= ""
+  %p= "Some explanation here?"
+
 
