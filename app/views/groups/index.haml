@@ -2,3 +2,11 @@
 #groups
   - @groups.each do |group|
     .group= link_to group.name, group_path(group)
+
+%h2= "Your group"
+- if current_user.group.nil?
+  = link_to "Create group", "#"
+- else
+  = link_to current_user.group.name, group_path(current_user.group)
+  %p= current_user.group.description
+
