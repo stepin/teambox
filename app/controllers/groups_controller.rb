@@ -9,6 +9,8 @@ class GroupsController < ApplicationController
   end
   
   def show
+    @contacts = []
+    @invitations = Invitation.find(:all, :conditions => {:group_id => @group.id})
   end
   
   def new

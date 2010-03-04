@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
   belongs_to :user
   has_many :projects, :dependent => :nullify
+  has_many :invitations
   has_and_belongs_to_many :users
   
   acts_as_paranoid
@@ -13,6 +14,14 @@ class Group < ActiveRecord::Base
     :path => ":rails_root/public/logos/:id/:style.:extension"
 
   validates_attachment_size :logo, :less_than => 10.megabytes, :if => :has_logo?
+  
+  def owner?(user)
+    self.user_id == user.id
+  end
+  
+  def admin?(user)
+    self.user_id == user.id
+  end
   
   def has_logo?
     !logo.original_filename.nil?
