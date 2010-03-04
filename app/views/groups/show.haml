@@ -1,13 +1,20 @@
-%h3= h(@group.name)
 
-%h2= "Users"
+%h2
+  = h(@group.name)
+  - if true#current_user.can_edit? @group
+    %span
+      = link_to t('.edit'), edit_group_path(@group)
+
+%h3= "Users"
 #users
   - @group.users.each do |user|
     .user= link_to user.name, user_path(user)
 = link_to "Add user", "#"
 
-%h2= "Projects"
+%h3= "Projects"
 #projects
   - @group.projects.each do |project|
     .project= link_to project.name, project_path(project)
 = link_to "Add project", "#"
+
+= groups_column

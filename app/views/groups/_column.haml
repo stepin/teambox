@@ -1,0 +1,5 @@
+- content_for :column do
+  %h2= "Your Groups"
+  %ul
+    - groups.each do |group|
+      %li= link_to h(group.name), group
