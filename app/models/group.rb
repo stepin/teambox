@@ -7,7 +7,7 @@ class Group < ActiveRecord::Base
   
   has_attached_file :logo,
     :styles => { 
-      :top => ["240x80#", :jpg],
+      :top => ["134x24#", :jpg],
       :icon => ["96x72#", :png] },
     :url  => "/logos/:id/:style.:extension",
     :path => ":rails_root/public/logos/:id/:style.:extension"
@@ -19,12 +19,13 @@ class Group < ActiveRecord::Base
   end
   
   def add_user(user)
-    self.users << user
+    self.user_ids << user.id
+    self.user_ids.uniq!
     save(false)
   end
   
   def remove_user(user)
-    self.users.remove(user)
+    self.user_ids.remove(user.id)
     save(false)
   end
   

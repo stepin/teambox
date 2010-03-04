@@ -8,19 +8,71 @@ class GroupsController < ApplicationController
     @groups = current_user.groups
   end
   
+  def show
+  end
+  
   def new
+    @group = Group.new
   end
   
   def create
+    unless current_user.group.nil?
+      flash[:error] = "You already own a group!"
+      redirect_to groups_path
+      return
+    end
+    
+    @group = Group.new(params[:group])
+    @group.user = current_user
+    
+    respond_to do |f|
+      if @group.save
+        @group.add_user(current_user)
+        flash[:notice] = I18n.t('groups.new.created')
+        f.html { redirect_to group_path(@group) }
+      else
+        flash[:error] = I18n.t('groups.new.invalid_group')
+        f.html { render :new }
+      end
+    end
   end
   
   def edit
   end
   
   def update
+    respond_to do |f|
+      if @group.update_attributes(params[:group])
+        if params[:only_logo]
+          f.html { logo }
+        else
+          f.html { redirect_to group_path(@group) }
+        end
+      else  
+        flash[:error] = I18n.t('groups.new.invalid_group')
+        if params[:only_logo]
+          f.html { logo }
+        else
+          f.html { render :new }
+        end
+      end
+    end
   end
   
   def destroy
+    @group.destroy
+    respond_to do |f|
+      f.html { redirect_to groups_path }
+    end
+  end
+  
+  def logo
+    case request.method
+    when :delete
+      @group.logo = nil
+      @group.save!
+    end
+    render :logo, :layout => 'upload_iframe'
   end
   
 private
