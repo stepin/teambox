@@ -17,11 +17,6 @@
     .account
       %p= t('.no_groups')
 
-- if false#@invitations.any?
-  .invitations
-    = list_pending_invites(@invitations)
-
-
 = content_for :column do
   %h2= ""
   %p= "Some explanation here?"
