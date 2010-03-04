@@ -1,0 +1,6 @@
+%h2= h(@group.name)
+
+%h3= "Users"
+#users
+  - @group.users.each do |user|
+    .user= link_to user.name, user_path(user)

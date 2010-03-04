@@ -192,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20100125103357) do
   end
 
   create_table "projects", :force => true do |t|
+    t.integer  "group_id", :default => nil
     t.integer  "user_id"
     t.string   "name"
     t.string   "permalink"
@@ -343,6 +344,24 @@ ActiveRecord::Schema.define(:version => 20100125103357) do
     t.integer "card_id"
     t.string  "name"
     t.integer "account_type", :default => 0
+  end
+  
+  create_table "groups", :force => true do |t|
+    t.string   "name",                      :limit => 40
+    t.text     "description"
+    t.string   "permalink",                 :limit => 40
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "deleted_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+  end
+  
+  create_table "groups_users", :id => false, :force => true do |t|
+    t.integer "group_id"
+    t.integer "user_id"
   end
   
   create_table "schema_migrations", :force => true do |t|
