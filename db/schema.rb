@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20100125103357) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.integer  "role",           :default => 2
+    t.integer  "group_id"
     t.string   "email"
     t.integer  "invited_user_id"
     t.string   "token"

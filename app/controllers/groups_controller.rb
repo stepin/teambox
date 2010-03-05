@@ -98,6 +98,30 @@ class GroupsController < ApplicationController
       f.js {@projects = @group.projects}
     end
   end
+
+  def members
+    saved = false
+    list = (params[:group][:member_ids] || []) rescue []
+    list = list.map(&:to_i)
+    
+    case request.method
+    when :put
+      @added_members = @group.user_ids & list
+      @group.user_ids = (@group.user_ids + list).uniq
+      saved = @group.save
+    when :post
+      saved = false
+    when :delete
+      @removed_members = @group.user_ids & list
+      @group.user_ids = @group.user_ids - list
+      saved = @group.save
+    end
+    
+    respond_to do |f|
+      f.html {redirect_to group_path(@group)}
+      f.js {@members = @group.users}
+    end
+  end
   
 private
 

@@ -6,16 +6,12 @@
       = link_to t('.edit'), edit_group_path(@group)
 
 %h3= "Users"
-#users
-  - @group.users.each do |user|
-    .user= link_to user.name, user_path(user)
-
 .index_people
   .content
     = invite_form(@group,Invitation.new)
     #people.people
       = list_invitations_for_group(@group,@invitations)
-      = list_people(@group,@people)
+      = list_members(@group,@group.users)
 
 
 %h3= "Projects"
