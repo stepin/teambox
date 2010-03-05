@@ -77,6 +77,28 @@ class GroupsController < ApplicationController
     render :logo, :layout => 'upload_iframe'
   end
   
+  def projects
+    saved = false
+    list = (params[:group][:project_ids] || []) rescue []
+    list = list.map(&:to_i)
+    
+    case request.method
+    when :put
+      @group.project_ids = (@group.project_ids + list).uniq
+      saved = @group.save
+    when :post
+      saved = false
+    when :delete
+      @group.project_ids = @group.project_ids - list
+      saved = @group.save
+    end
+    
+    respond_to do |f|
+      f.html {redirect_to group_path(@group)}
+      f.js {@projects = @group.projects}
+    end
+  end
+  
 private
 
   def load_group

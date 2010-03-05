@@ -9,7 +9,6 @@
 #users
   - @group.users.each do |user|
     .user= link_to user.name, user_path(user)
-= link_to "Add user", "#"
 
 .index_people
   .content
@@ -21,8 +20,6 @@
 
 %h3= "Projects"
 #projects
-  - @group.projects.each do |project|
-    .project= link_to project.name, project_path(project)
-= link_to "Add project", "#"
-
-= groups_column
+  = render :partial => 'groups/project', :collection => @group.projects
+= add_group_project_link
+= group_project_form
