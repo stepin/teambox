@@ -76,7 +76,11 @@ class InvitationsController < ApplicationController
   def accept
     @invitation.accept(current_user)
     @invitation.destroy
-    redirect_to(project_path(@invitation.project))
+    if @invitation.project
+      redirect_to(project_path(@invitation.project))
+    else
+      redirect_to(group_path(@invitation.group))
+    end
   end
   
   def decline
@@ -100,9 +104,15 @@ class InvitationsController < ApplicationController
     end
     
     def load_user_invitation
-      @invitation = Invitation.find(:first,:conditions => {
-        :project_id => @current_project.id,
-        :invited_user_id => current_user.id})
+      conds = if @current_project
+        { :project_id => @current_project.id,
+          :invited_user_id => current_user.id}
+      else
+        { :group_id => @current_group.id,
+          :invited_user_id => current_user.id}
+      end
+      
+      @invitation = Invitation.find(:first,:conditions => conds)
       unless @invitation
         flash[:error] = "Invalid invitation code"
         redirect_to user_invitations_path(current_user)

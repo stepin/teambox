@@ -24,6 +24,16 @@ module GroupsHelper
     link_to_function t('.add_project'), show_group_project_form, :id => 'group_project_link'
   end
   
+  def remove_member_link(group,member,user)
+    if !group.owner?(member)
+      delete_member_link(group,member)
+    end
+  end
+  
+  def delete_member_link(group,member)
+    link_to_remote t('.remove'), :url => members_group_path(@group, 'group[member_ids][]' => member.id), :method => :delete
+  end
+  
   def show_group_project_form
     update_page do |page|
       page.show "group_project_form"
@@ -36,5 +46,18 @@ module GroupsHelper
       page.hide "group_project_form"
       page.show "group_project_link"
     end
+  end
+  
+  def list_members(group, users)
+    render :partial => 'member', 
+      :collection => users, 
+      :as => :member, :locals => {:group => group}
+  end
+  
+  def member_header(group, user)
+    render :partial => 'groups/header', 
+      :locals => { 
+        :group => group,
+        :user => user }
   end
 end

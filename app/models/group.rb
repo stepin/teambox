@@ -23,19 +23,25 @@ class Group < ActiveRecord::Base
     self.user_id == user.id
   end
   
+  def has_member?(user)
+    self.user_ids.include? user.id
+  end
+  
   def has_logo?
     !logo.original_filename.nil?
   end
   
   def add_user(user)
-    self.user_ids << user.id
-    self.user_ids.uniq!
+    self.users << user
+    self.users.uniq!
     save(false)
   end
   
   def remove_user(user)
-    self.user_ids.remove(user.id)
-    save(false)
+    if !self.owner?(user)
+      self.users.remove(user)
+      save(false)  
+    end
   end
   
   def to_param
