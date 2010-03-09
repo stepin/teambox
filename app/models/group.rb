@@ -8,8 +8,8 @@ class Group < ActiveRecord::Base
   
   has_attached_file :logo,
     :styles => { 
-      :top => ["134x24#", :jpg],
-      :icon => ["96x72#", :png] },
+      :top => ["134x24>", :jpg],
+      :icon => ["96x72>", :png] },
     :url  => "/logos/:id/:style.:extension",
     :path => ":rails_root/public/logos/:id/:style.:extension"
 

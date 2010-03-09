@@ -200,6 +200,7 @@ en:
       settings_page: "settings page"
   groups:
     index:
+      title: Groups
       no_group_create: "You do not own a group. {{link}}."
       create_group: "Create a group"
       groups_in: "Groups you are in"
@@ -208,6 +209,11 @@ en:
       description: "Use groups to share resources with others, and to band together projects under a single name!"
       submit_project: Add
       remove_project: Remove
+    logo:
+      current: Current logo
+      delete: Remove
+      description: This logo will appear on all projects belonging to this group
+      upload: Upload
     search:
       username_or_email: Username or email
       invite: Invite
@@ -219,6 +225,8 @@ en:
       submit: Submit
       explain: You can only have one group.
       title: Create group
+    edit:
+      submit: Update
     show:
       edit: Edit
       add_project: Add a project
@@ -656,6 +664,7 @@ en:
       signup: Signup
       files: Files
       invitations: Invitations
+      groups: Groups
     global_navigation:
       project_invitations: Project Invitations
       home: Home

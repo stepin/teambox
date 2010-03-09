@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   skip_before_filter :load_project
+  before_filter :check_groups
   before_filter :load_group, :except => [:index, :new, :create]
   before_filter :set_page_title
   
@@ -126,8 +127,24 @@ class GroupsController < ApplicationController
   
 private
 
+  def check_groups
+    # No groups? bah!
+    unless groups_enabled?
+      flash[:error] = "Groups are not enabled on this system"
+      redirect_to root_path
+      return false
+    end
+  end
+  
   def load_group
     begin
+      # No groups? bah!
+      unless groups_enabled?
+        flash[:error] = "Groups are not enabled on this system"
+        redirect_to root_path
+        return false
+      end
+      
       @group = Group.find_by_permalink(params[:id])
     rescue
       flash[:error] = "Could not find group #{params[:id]}"

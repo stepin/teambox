@@ -12,7 +12,7 @@
 #groups
   - if @groups.any?
     %p= t('.groups_in')
-    = list_groups(@groups)
+    = list_groups(@groups_member)
   - else
     .account
       %p= t('.no_groups')

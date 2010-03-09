@@ -14,6 +14,11 @@ module GroupsHelper
     link_to "<img class='icon' src='#{src}' alt='#{group.name}'/>", group_path(group)
   end
   
+  def group_logo_fields(group, f)
+    render :partial => 'groups/logo_fields', 
+    :locals => {:f => f, :group => group}
+  end
+  
   def group_project_form()
     render :partial => 'groups/project_form', :locals => {
       :group => @group,
