@@ -255,7 +255,7 @@ module TasksHelper
 
   def due_on(task)
     if task.overdue?
-      t('tasks.overdue', :days => task.overdue) + " (#{I18n.l(task.due_on, :format => '%b %d')})"
+      t('tasks.overdue', :days => task.overdue, :count => task.overdue) + " (#{I18n.l(task.due_on, :format => '%b %d')})"
     else
       I18n.l(task.due_on, :format => '%b %d')
     end
