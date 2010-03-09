@@ -209,7 +209,7 @@ en:
       description: "Use groups to share resources with others, and to band together projects under a single name!"
       submit_project: Add
       remove_project: Remove
-    logo:
+    logo_fields:
       current: Current logo
       delete: Remove
       description: This logo will appear on all projects belonging to this group
@@ -221,6 +221,8 @@ en:
     fields:
       name: Name
       description: Description
+      permalink: Permalink
+      permalink_description: Domain your group can be accessed from
     new:
       submit: Submit
       explain: You can only have one group.

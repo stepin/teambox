@@ -5,10 +5,10 @@
   = f.label :description, t('.description')
   = f.text_area :description
 .permalink.text_field
-  = f.label :permalink, t('accounts.fields.permalink')
+  = f.label :permalink, t('groups.fields.permalink')
   = f.text_field :permalink
   = tooltip 'group_permalink', t('groups.fields.permalink_description')
   .preview
     = request.protocol + "<span id='handle'></span>." + request.host
-  = watch_permalink_example
-  = #javascript_tag "Account.valid_url();"
+  = watch_permalink_group
+  = javascript_tag "Group.valid_url();"

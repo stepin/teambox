@@ -14,9 +14,9 @@ module GroupsHelper
     link_to "<img class='icon' src='#{src}' alt='#{group.name}'/>", group_path(group)
   end
   
-  def group_logo_fields(group, f)
+  def group_logo_fields(group, f, button=false)
     render :partial => 'groups/logo_fields', 
-    :locals => {:f => f, :group => group}
+    :locals => {:f => f, :group => group, :include_button => button}
   end
   
   def group_project_form()
@@ -27,6 +27,10 @@ module GroupsHelper
   
   def add_group_project_link
     link_to_function t('groups.show.add_project'), show_group_project_form, :id => 'group_project_link'
+  end
+  
+  def watch_permalink_group
+    javascript_tag "$('group_permalink').observe('keyup', function(e) { Group.valid_url(); })"    
   end
   
   def remove_member_link(group,member,user)
