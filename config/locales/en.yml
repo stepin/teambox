@@ -664,7 +664,7 @@ en:
       signup: Signup
       files: Files
       invitations: Invitations
-      groups: Groups
+      groups: Project Groups
     global_navigation:
       project_invitations: Project Invitations
       home: Home

@@ -31,7 +31,8 @@ render_tabnav :project do
          t.links_to groups_path
          t.highlights_on :controller => :groups
          t.li_class = 'groups'
-         t.tab_index = 149
+         t.li_class = 'right_side'
+         t.tab_index = 102
         end
       end
 
@@ -98,7 +99,7 @@ render_tabnav :project do
           t.links_to  project_settings_path(project)
           t.highlights_on :controller => :projects, :action => :edit
           t.li_class = 'right_side'
-          t.tab_index = 155       
+          t.tab_index = 155
         end
       end
     end    
