@@ -8,7 +8,9 @@
 %h3= "Users"
 .index_people
   .content
-    = invite_form(@group,Invitation.new)
+    .invite_box
+      = invite_by_group_search(@group, Invitation.new)
+      .clear
     #people.people
       = list_invitations_for_group(@group,@invitations)
       = list_members(@group,@group.users)
