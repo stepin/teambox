@@ -317,11 +317,16 @@ en:
       resend: Re-send invitation email
       pending: "An email was sent to this user, but they still haven't confirmed."
       discard: Discard invitation
+    group_invitation:
+      invited_user: "{{inviter}} invited <b>{{invitee}}</b> to join the group."
+      invited_email: "{{inviter}} invited <b>{{email}}</b> to join the group."
     sent:
       email_sent: "<b>We just sent a notification email to this user with a link to accept your project invitation</b>. If they can't find the email, make sure it was not classified as spam or try a different email address. If problems persist, please contact our staff."
     pending:
       to_access_or: to access the project or
+      to_access_or_group: to access the group or
       invited_to_join: "{{by}} has invited you to join the project {{project}}."
+      invited_to_join_group: "{{by}} has invited you to join the group {{group}}."
     resend:
       resent: "The invitation has been resent to {{recipient}}. If the email is not received make sure to check the spam folder."
       return: Go back

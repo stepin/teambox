@@ -1,7 +1,10 @@
 .project
   = thumb_avatar(invitation.user)
   .text
-    = t('.invited_to_join', :by => user_link(invitation.user), :project => content_tag(:b,h(invitation.target.name)))
+    - if invitation.project
+      = t('.invited_to_join', :by => user_link(invitation.user), :project => content_tag(:b,h(invitation.target.name)))
+    - else
+      = t('.invited_to_join_group', :by => user_link(invitation.user), :group => content_tag(:b,h(invitation.target.name)))
   
   .actions
     - if invitation.project
@@ -15,6 +18,6 @@
       - form_for invitation.group, :url => accept_group_invitation_path(invitation.target,invitation), :html => { :class => 'accept_project' } do |f|
         = f.submit t('common.accept')
         %span 
-        = t('.to_access_or')
+        = t('.to_access_or_group')
       - form_for invitation.group, :url => decline_group_invitation_path(invitation.target,invitation), :html => { :class => 'decline_project' } do |f|
         = f.submit t('common.decline')

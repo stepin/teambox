@@ -14,6 +14,14 @@ class Group < ActiveRecord::Base
     :path => ":rails_root/public/logos/:id/:style.:extension"
 
   validates_attachment_size :logo, :less_than => 10.megabytes, :if => :has_logo?
+
+  validates_uniqueness_of :permalink, :case_sensitive => false
+  validates_length_of :permalink, :minimum => 5
+  validates_format_of :permalink, :with => /^[a-z0-9_\-]{5,}$/, :if => :permalink_length_valid?
+  
+  def permalink_length_valid?
+    self.permalink.length >= 5
+  end
   
   def owner?(user)
     self.user_id == user.id
