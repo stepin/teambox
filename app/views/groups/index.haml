@@ -1,7 +1,7 @@
 %h2
   = t('.title')
 
-#group
+#groups_owned
   - if @group.nil?
     %p= t('.no_group_create', :link => link_to(t('.create_group'), new_group_path))
   - else
@@ -17,8 +17,5 @@
     .account
       %p= t('.no_groups')
 
-= content_for :column do
-  %h2= ""
-  %p= t('.description')
-
+= render :partial => 'column'
 

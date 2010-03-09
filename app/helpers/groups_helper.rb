@@ -10,7 +10,7 @@ module GroupsHelper
   end
   
   def group_icon(group)
-    src = group.has_logo? ? group.logo.url(:icon) : "/images/icon_default.png"
+    src = group.has_logo? ? group.logo.url(:icon) : "/images/header_logo_black.png"
     link_to "<img class='icon' src='#{src}' alt='#{group.name}'/>", group_path(group)
   end
   
@@ -21,7 +21,7 @@ module GroupsHelper
   end
   
   def add_group_project_link
-    link_to_function t('.add_project'), show_group_project_form, :id => 'group_project_link'
+    link_to_function t('groups.show.add_project'), show_group_project_form, :id => 'group_project_link'
   end
   
   def remove_member_link(group,member,user)

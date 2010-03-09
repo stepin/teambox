@@ -5,7 +5,6 @@
     %span
       = link_to t('.edit'), edit_group_path(@group)
 
-%h3= "Users"
 .index_people
   .content
     .invite_box
@@ -15,9 +14,4 @@
       = list_invitations_for_group(@group,@invitations)
       = list_members(@group,@group.users)
 
-
-%h3= "Projects"
-#projects
-  = render :partial => 'groups/project', :collection => @group.projects
-= add_group_project_link
-= group_project_form
+= render :partial => 'column_group'
