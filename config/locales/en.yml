@@ -736,6 +736,8 @@ en:
       teambox_is_a_pm_platform: "Teambox is a project management platform made for real-world collaboration."
       plan_share_and_collaborate: "Plan, share and keep track of what's been done. Simple as it should be."
       report_abuse: "This email was sent to you by your contact's request. Please report any abuse."
+    invitation_group:
+      you_have_been_invited_to: "You have been invited to the group <b>{{group}}</b>"
     confirm:
       hey: "Hey, {{user_name}}!"
       follow_the_link: "In order to <b>complete your signup</b> for Teambox, we need you to log in by clicking here:"
