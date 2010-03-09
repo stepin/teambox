@@ -3,7 +3,7 @@
 
 #group
   - if @group.nil?
-    %p= t('.no_group_create', :link => link_to(t('create_group'), new_group_path))
+    %p= t('.no_group_create', :link => link_to(t('.create_group'), new_group_path))
   - else
     %p= t('.your_group')
     .group.owned
@@ -19,6 +19,6 @@
 
 = content_for :column do
   %h2= ""
-  %p= "Some explanation here?"
+  %p= t('.description')
 
 

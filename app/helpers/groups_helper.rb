@@ -48,6 +48,13 @@ module GroupsHelper
     end
   end
   
+  def invite_by_group_search(target,invitation)
+    render :partial => 'groups/search',
+      :locals => {
+        :target => target,
+        :invitation => invitation }
+  end
+  
   def list_members(group, users)
     render :partial => 'member', 
       :collection => users, 
