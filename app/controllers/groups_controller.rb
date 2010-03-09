@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
   def index
     @group = current_user.group
     @groups = current_user.groups
+    @groups_member = @groups - [@group]
   end
   
   def show
