@@ -9,6 +9,10 @@ module GroupsHelper
     render :partial => 'groups/group', :collection => groups
   end
   
+  def groups_primer
+    render :partial => 'groups/primer'
+  end
+  
   def group_icon(group)
     src = group.has_logo? ? group.logo.url(:icon) : "/images/icon_logo_black.png"
     link_to "<img class='icon' src='#{src}' alt='#{group.name}'/>", group_path(group), :class => 'icon'

@@ -4,6 +4,9 @@
   - else
     %img{:src => "/images/header_logo_black.png", :alt => @group.name, :style => "height:24px"}/
   
+  .description
+    = @group.description
+
   %h2= "Projects"
   #projects
     = list_group_projects(@group)
@@ -12,4 +15,4 @@
     = group_project_form
 
   %h2= "Your Groups"
-  = list_groups(current_user.groups)
+  = render :partial => 'group_column', :collection => current_user.groups

@@ -201,14 +201,15 @@ en:
   groups:
     index:
       title: Groups
-      no_group_create: "You do not own a group. {{link}}."
-      create_group: "Create a group"
       groups_in: "Groups you are in"
       your_group: "Your group"
       no_groups: "You do not belong to any groups."
       description: "Use groups to share resources with others, and to band together projects under a single name!"
       submit_project: Add
       remove_project: Remove
+    primer:
+      no_group_create: "You do not own a group. {{link}}."
+      create_group: "Create a group"
     header:
       leave: Leave
       remove: Remove

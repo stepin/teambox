@@ -6,8 +6,9 @@
     %p= t('.your_group')
     .group.owned
       = list_groups([@group])
-  - else
-    %p= t('.no_group_create', :link => link_to(t('.create_group'), new_group_path))
+
+- if @group.nil?
+  = groups_primer
 
 #groups
   - if @groups.any?
