@@ -1,17 +1,19 @@
 
 %h2
   = h(@group.name)
-  - if true#current_user.can_edit? @group
+  - if @group.has_member?(current_user)
     %span
       = link_to t('.edit'), edit_group_path(@group)
 
 .index_people
   .content
-    .invite_box
-      = invite_by_group_search(@group, Invitation.new)
-      .clear
+    - if @group.admin?(current_user)
+      .invite_box
+        = invite_by_group_search(@group, Invitation.new)
+        .clear
     #people.people
-      = list_invitations_for_group(@group,@invitations)
+      - if @group.has_member?(current_user)
+        = list_invitations_for_group(@group,@invitations)
       = list_members(@group,@group.users)
 
 = render :partial => 'column_group'

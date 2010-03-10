@@ -28,7 +28,7 @@ class Group < ActiveRecord::Base
   end
   
   def admin?(user)
-    self.user_id == user.id
+    self.has_member?(user)
   end
   
   def has_member?(user)

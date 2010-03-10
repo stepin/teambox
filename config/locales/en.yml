@@ -209,6 +209,9 @@ en:
       description: "Use groups to share resources with others, and to band together projects under a single name!"
       submit_project: Add
       remove_project: Remove
+    header:
+      leave: Leave
+      remove: Remove
     logo_fields:
       current: Current logo
       delete: Remove

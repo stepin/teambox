@@ -2,6 +2,8 @@ class GroupsController < ApplicationController
   skip_before_filter :load_project
   before_filter :check_groups
   before_filter :load_group, :except => [:index, :new, :create]
+  before_filter :check_admin, :only => [:projects, :members]
+  before_filter :check_edit, :only => [:edit, :update]
   before_filter :set_page_title
   
   def index
@@ -136,6 +138,22 @@ private
     end
   end
   
+  def check_admin
+    unless @group.admin?(current_user)
+      flash[:error] = "Cannot admin this group"
+      redirect_to root_path
+      return false
+    end
+  end
+  
+  def check_edit
+    unless @group.owner?(current_user)
+      flash[:error] = "Cannot edit this group"
+      redirect_to root_path
+      return false
+    end
+  end
+  
   def load_group
     begin
       # No groups? bah!
@@ -145,7 +163,7 @@ private
         return false
       end
       
-      @group = Group.find_by_permalink(params[:id])
+      @group = current_user.groups.find_by_permalink(params[:id])
     rescue
       flash[:error] = "Could not find group #{params[:id]}"
       redirect_to groups_path

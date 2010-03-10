@@ -6,9 +6,10 @@
   
   %h2= "Projects"
   #projects
-    = render :partial => 'groups/project', :collection => @group.projects
-  = add_group_project_link
-  = group_project_form
+    = list_group_projects(@group)
+  - if @group.admin?(current_user)
+    = add_group_project_link
+    = group_project_form
 
   %h2= "Your Groups"
   = list_groups(current_user.groups)

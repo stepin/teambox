@@ -10,8 +10,8 @@ module GroupsHelper
   end
   
   def group_icon(group)
-    src = group.has_logo? ? group.logo.url(:icon) : "/images/header_logo_black.png"
-    link_to "<img class='icon' src='#{src}' alt='#{group.name}'/>", group_path(group)
+    src = group.has_logo? ? group.logo.url(:icon) : "/images/icon_logo_black.png"
+    link_to "<img class='icon' src='#{src}' alt='#{group.name}'/>", group_path(group), :class => 'icon'
   end
   
   def group_logo_fields(group, f, button=false)
@@ -35,12 +35,26 @@ module GroupsHelper
   
   def remove_member_link(group,member,user)
     if !group.owner?(member)
-      delete_member_link(group,member)
+      if user.id == member.id
+        delete_member_link(group,member, '.leave')
+      else
+        delete_member_link(group,member, '.remove')
+      end
     end
   end
   
-  def delete_member_link(group,member)
-    link_to_remote t('.remove'), :url => members_group_path(@group, 'group[member_ids][]' => member.id), :method => :delete
+  def remove_group_project_link(group, project)
+    if group.admin?(current_user)
+      link_to_remote t('groups.index.remove_project'), :url => projects_group_path('group[project_ids]' => project.id), :method => :delete
+    end
+  end
+  
+  def list_group_projects(group)
+    render :partial => 'groups/project', :collection => group.projects, :locals => {:group => group}
+  end
+  
+  def delete_member_link(group,member,ts)
+    link_to_remote t(ts), :url => members_group_path(@group, 'group[member_ids][]' => member.id), :method => :delete
   end
   
   def show_group_project_form

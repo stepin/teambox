@@ -1,5 +1,5 @@
 .project
   .actions
-    = link_to_remote t('groups.index.remove_project'), :url => projects_group_path('group[project_ids]' => project.id), :method => :delete
+    = remove_group_project_link(group, project)
   = link_to project.name, project_path(project)
   .clear
