@@ -199,6 +199,46 @@ fr:
       tasks_without_a_due_date: "Tasks without a due date"
       you_receive_this_message: "You receive this message because you signed up for it. You can disable it on your {{link}}"
       settings_page: "settings page"
+  ####
+  groups:
+    index:
+      title: Groups
+      groups_in: "Groups you are in"
+      your_group: "Your group"
+      no_groups: "You do not belong to any groups."
+      description: "Use groups to share resources with others, and to band together projects under a single name!"
+      submit_project: Add
+      remove_project: Remove
+    primer:
+      no_group_create: "You do not own a group. {{link}}."
+      create_group: "Create a group"
+    header:
+      leave: Leave
+      remove: Remove
+    logo_fields:
+      current: Current logo
+      delete: Remove
+      description: This logo will appear on all projects belonging to this group
+      upload: Upload
+    search:
+      username_or_email: Username or email
+      invite: Invite
+      invite_people: Invite people to the group
+    fields:
+      name: Name
+      description: Description
+      permalink: Permalink
+      permalink_description: Domain your group can be accessed from
+    new:
+      submit: Create
+      explain: You can only have one group.
+      title: Create group
+      created: Your group has been created
+    edit:
+      submit: Update
+    show:
+      edit: Edit
+      add_project: Add a project
   projects:
     index:
       title: Activité dans tous vos projets
