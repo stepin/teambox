@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_filter :check_groups
   before_filter :load_group, :except => [:index, :new, :create]
   before_filter :check_admin, :only => [:projects, :members]
-  before_filter :check_edit, :only => [:edit, :update]
+  before_filter :check_edit, :only => [:edit, :update, :destroy]
   before_filter :set_page_title
   
   def index

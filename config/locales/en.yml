@@ -227,7 +227,7 @@ en:
       permalink: Permalink
       permalink_description: Domain your group can be accessed from
     new:
-      submit: Submit
+      submit: Create
       explain: You can only have one group.
       title: Create group
     edit:
