@@ -83,7 +83,7 @@ class Invitation < RoleRecord
     if target.class == Project
       person = self.project.people.new(
         :user => current_user,
-        :role => @invitation.role || 2,
+        :role => self.role || 2,
         :source_user => self.user)
       person.save
     else

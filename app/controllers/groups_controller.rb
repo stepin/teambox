@@ -33,7 +33,6 @@ class GroupsController < ApplicationController
     
     respond_to do |f|
       if @group.save
-        @group.add_user(current_user)
         flash[:notice] = I18n.t('groups.new.created')
         f.html { redirect_to group_path(@group) }
       else
@@ -109,14 +108,8 @@ class GroupsController < ApplicationController
     list = list.map(&:to_i)
     
     case request.method
-    when :put
-      @added_members = @group.user_ids & list
-      @group.user_ids = (@group.user_ids + list).uniq
-      saved = @group.save
-    when :post
-      saved = false
     when :delete
-      @removed_members = @group.user_ids & list
+      @removed_member_ids = @group.user_ids & list
       @group.user_ids = @group.user_ids - list
       saved = @group.save
     end
@@ -155,16 +148,15 @@ private
   end
   
   def load_group
-    begin
-      # No groups? bah!
-      unless groups_enabled?
-        flash[:error] = "Groups are not enabled on this system"
-        redirect_to root_path
-        return false
-      end
-      
-      @group = current_user.groups.find_by_permalink(params[:id])
-    rescue
+    # No groups? bah!
+    unless groups_enabled?
+      flash[:error] = "Groups are not enabled on this system"
+      redirect_to root_path
+      return false
+    end
+    
+    @group = current_user.groups.find_by_permalink(params[:id])
+    unless @group
       flash[:error] = "Could not find group #{params[:id]}"
       redirect_to groups_path
       return false

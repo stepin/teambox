@@ -230,6 +230,7 @@ en:
       submit: Create
       explain: You can only have one group.
       title: Create group
+      created: Your group has been created
     edit:
       submit: Update
     show:
