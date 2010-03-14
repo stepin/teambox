@@ -7,4 +7,4 @@
         = localized_status_name(task)
         - if task.due_on
           = "-"
-          = task.overdue? ? t('tasks.overdue', :days => task.overdue) : I18n.l(task.due_on, :format => '%b %d')
+          = task.overdue? ? t('tasks.overdue', :days => task.overdue, :count => task.overdue ) : I18n.l(task.due_on, :format => '%b %d')
