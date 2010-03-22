@@ -1,4 +1,5 @@
-I18n.load_path = Dir[File.join(RAILS_ROOT, 'config/locales', '*.{rb,yml}')]
+require 'russian'
+I18n.load_path += Dir[File.join(RAILS_ROOT, 'config/locales', '*.{rb,yml}')]
 
 namespace :teambox do
   namespace :i18n do
