@@ -16,7 +16,7 @@ module GanttChart
         ten_spaces  = day_width_max - (date.day == 1 ? 10 : 0)
 
         major = [0,6].include?(date.wday) ? 'major' : ''
-        date_day = date.day == 1 ? Date::ABBR_MONTHNAMES[date.month] : date.day
+        date_day = I18n.l(date, :format => date.day == 1 ? "%b" : "%e")
 
         html << "<div class='date #{major}' style='left: #{five_spaces}px;'>#{date_day}</div>"
         html << "<div class='mark' style='left: #{ten_spaces}px;'></div>"
